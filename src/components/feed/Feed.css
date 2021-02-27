@@ -1,0 +1,44 @@
+.feed {
+    /* border-right: 1px solid var(--twitter-background); */
+    min-width: fit-content;
+    overflow-y: scroll;
+  }
+   
+  .feed::-webkit-scrollbar {
+    display: none;
+  } 
+  .feed {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+  
+.feed__header {
+    position: sticky;
+    top: 0;
+    background-color: white;
+    z-index: 100;
+    /* border: 1px solid var(--twitter-background); */
+  }
+  .feed__header > h2 {
+    font-size: 16px;
+    font-weight: 800;
+  }
+  .feed__post {
+    padding : 15px;
+    border : 1px solid var(--twitter-color);
+    margin : 10px;
+    border-radius : 10px;
+  }
+  .feed__post__flex {
+    display : flex;
+    padding: 10px;
+  }
+  .feed__post__text h2{
+    font-size : 15px !important;
+  }
+  .feed__post__follow h4{
+    font-size :15px;
+  }
+  .feed__post__username {
+    font-size : 15px;
+  }
