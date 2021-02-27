@@ -1,12 +1,32 @@
 import React from 'react';
 import './Login.css';
 import { useForm} from 'react-hook-form';
-const Login = () => {
- 
-    const {register,handleSubmit } = useForm();
+import { useEffect, useState } from 'react';
+import { useHistory } from "react-router-dom";
 
+const Login = () => {
+
+    const {register,handleSubmit } = useForm();
+    const [registerData,setRegisterData] = useState([]);
+    const history = useHistory();
+
+    useEffect(()=>{ 
+        fetch('http://localhost:5000/Registerdata')
+        .then (res=>res.json())
+        .then(data=>
+            setRegisterData(data) 
+            )
+    },[])
     const onSubmit = (data)=>{
-       console.log(data);
+        const rData = registerData.find(regData => regData.username==data.username);
+        if(rData) {
+                alert("Login Successfull");
+                history.push(`/home/${rData._id}`);
+        }
+        else {
+            alert("You are not register");
+            history.push('/Register');
+        }
     }
 
     return ( 
@@ -20,6 +40,7 @@ const Login = () => {
                      name="username"
                      className="form-control"
                      ref={register}
+                     required
                      />
                      </div>
                      <button 

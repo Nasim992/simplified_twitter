@@ -1,14 +1,43 @@
 import './Register.css';
 import {useForm} from 'react-hook-form';
+import { useHistory } from "react-router-dom";
+import { useEffect, useState } from 'react';
+
 const Register = () => {
-
+ 
+   const [registerData,setRegisterData] = useState([]);
     const {register,handleSubmit} = useForm();
+    const history = useHistory();
 
-    const onSubmit = (data)=> {
-        console.log(data); 
+    useEffect(()=>{
+        fetch('http://localhost:5000/Registerdata')
+        .then (res=>res.json())
+        .then(data=>
+            setRegisterData(data)
+            )
+    },[])
+    const onSubmit = (data)=> {       
+        const rData = registerData.find(regData => regData.username==data.username);
+        if(rData==undefined) {
+            fetch('http://localhost:5000/Register', {
+                method: 'POST',
+                body: JSON.stringify(data),
+                headers: {
+                  "Content-type": "application/json; charset=UTF-8"
+                }
+              })
+              .then(response => response.json())
+              .then(json => console.log(json))
+                alert("Registration Successfull.Now Login to your account");
+                history.push('/Login');
+        }
+        else {
+            alert("Username is already available");
+            history.push('/Register');
+        }
     } 
 
-    return (
+    return ( 
         <div className="container">
              <div className="input__form">
                  <h4>Registration Form</h4>
@@ -20,6 +49,7 @@ const Register = () => {
                      className="form-control"
                      placeholder="Enter your username here"
                      ref={register}
+                     required
                      />
                      </div><br></br>
                      <div className="form-group">
@@ -29,6 +59,7 @@ const Register = () => {
                      className="form-control"
                      placeholder="Enter your full name here"
                      ref={register}
+                     required
                      />
                      </div>
                      <button 
