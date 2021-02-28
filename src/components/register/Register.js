@@ -18,7 +18,7 @@ const Register = () => {
     },[])
     const onSubmit = (data)=> {       
         const rData = registerData.find(regData => regData.username==data.username);
-        if(rData==undefined) {
+        if(rData==undefined || rData==null) {
             fetch('http://localhost:5000/Register', {
                 method: 'POST',
                 body: JSON.stringify(data),
@@ -32,7 +32,7 @@ const Register = () => {
                 history.push('/Login');
         }
         else {
-            alert("Username is already available");
+            alert("Username is already available.Try different username");
             history.push('/Register');
         }
     } 

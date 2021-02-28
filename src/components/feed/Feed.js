@@ -10,7 +10,7 @@ import { Avatar } from '@material-ui/core';
 const Feed = (props) => {
 
     const [tweets,setTweets] = useState([]);
-    const [profile,setProfile] = useState([]);
+    const [profile,setProfile] = useState([]); 
     useEffect(()=>{
         fetch('http://localhost:5000/tweetdata') 
         .then (res=>res.json()) 
@@ -25,34 +25,15 @@ const Feed = (props) => {
             setProfile(data) 
             ) 
     },[])
-
-//     tweets.map(tw=>{              
-//         profile.map(fl=>{
-//             if(tw.userid===fl._id && tw.status===1) {
-//                 console.log(fl.username);
-//                 console.log(fl.fullname);
-//                  <p>fl.username</p>
-//             }
-//         });
-//         console.log(tw.tweets);
-// })
-     const arrayNameandTweets = [] ;
-
-     tweets.map(tw=> {
-
-        const nameProfile = profile.filter(fl=>tw. userid===fl._id);
-
-    }) ;
-
     return ( 
         <div className="feed">
             <div className="feed__header">
-                 <h2>Home</h2> 
+                 <h5>Home</h5> 
             </div>
             <Tweet userid={props.userid}/>
-
-            {
+            { 
             tweets.map(tw=>
+
                 <div className="post" >
                 <div className="post__avatar">
                   <Avatar/>
@@ -61,21 +42,16 @@ const Feed = (props) => {
                   <div className="post__header">
                     <div className="post__headerText">
                       <h3>
-                     
+                          {tw.fullname}
                         <span className="post__headerSpecial">
-                         
+                         @{tw.username}
                         </span>
                       </h3>
                     </div>
                     <div className="post__headerDescription">
                     {
-                            profile.map(fl=>
-                            <p>{fl.fullname}@{fl.username} {tw.tweets}</p> 
-                            
-                            )
-                            
-                        }
-    
+                            <p>{tw.tweets}</p>                            
+                    }
                     </div>
                   </div>
                   <img src=""alt="" />
@@ -89,8 +65,6 @@ const Feed = (props) => {
                      </div>
             )
             }
-
-
             </div> 
     );
 };

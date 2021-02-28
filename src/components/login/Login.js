@@ -19,6 +19,9 @@ const Login = () => {
     },[])
     const onSubmit = (data)=>{
         const rData = registerData.find(regData => regData.username==data.username); 
+
+        sessionStorage.setItem("rData",rData.username);
+
         if(rData) {
                 alert("Login Successfull");
                 history.push(`/home/${rData._id}`);
