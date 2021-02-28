@@ -11,7 +11,7 @@ const Home = () => {
     return (
         <div className="container">
             <div className="row">
-                <div className="col-sm-12 col-md-12 col-xl-2 col-lg-2">
+                <div className="col-sm-12 col-md-12 col-xl-3 col-lg-3">
                     {/* Sidebar */}
                     <Sidebar/> 
                 </div>
@@ -19,9 +19,9 @@ const Home = () => {
                     {/* News Feed */}
                     <Feed userid={id}/>
                 </div>
-                <div className="col-sm-12 col-md-12 col-xl-4 col-lg-4">
+                <div className="col-sm-12 col-md-12 col-xl-3 col-lg-3">
                     {/* Last Active User */}
-                    <LastActiveUser/>
+                    <LastActiveUser userid={id}/>
                 </div> 
             </div>
         </div>

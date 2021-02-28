@@ -2,9 +2,11 @@ import React from 'react';
 import './Tweet.css';
 import { Avatar,Button, } from "@material-ui/core";
 import { useForm} from 'react-hook-form';
+import { useHistory } from 'react-router-dom';
 
-const Tweet = (props) => {
+const Tweet = (props) => { 
     const {register,handleSubmit } = useForm();
+    const history = useHistory();
  
     const onSubmit = (data)=>{
             fetch(`http://localhost:5000/tweet/${props.userid}`,{
@@ -18,6 +20,7 @@ const Tweet = (props) => {
             .then(data => console.log(data)
             )
             alert("Tweet posted successfully");
+            history.push(`/Home/${props.userid}`);
     }
     return (
 
