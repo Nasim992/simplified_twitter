@@ -12,12 +12,12 @@ const LastActiveUser = (props) => {
             setRegisterData(data)
             )
     },[]) 
- 
+    const ExceptOwnUser = registerData.filter(fl=>fl._id!==props.userid);
     return (  
         <div className="lastActiveUser">
             <h5>Last Active User</h5> 
             {
-                registerData.map(rdata=> 
+                ExceptOwnUser.map(rdata=> 
                     <div className="activeUser">
                        <div className="row">
                            <div className="col-sm-8 col-md-8 col-xl-8col-lg-8 activeUser__fullname">
@@ -34,8 +34,6 @@ const LastActiveUser = (props) => {
                            </div>
                        </div>
                     </div>
-                
-
                     )
             }
 
