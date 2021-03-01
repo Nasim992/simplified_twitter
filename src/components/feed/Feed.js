@@ -46,7 +46,14 @@ const Feed = (props) => {
         }
       }
    }
+
    PublicTweets.reverse();
+
+   var notTweet = '';
+
+   if(PublicTweets.length===0) {
+    notTweet = "You don't have any tweet yet.Or,You are not following anyone";
+  }
 
     return ( 
         <div className="feed">
@@ -54,6 +61,8 @@ const Feed = (props) => {
                  <h5>Home</h5> 
             </div>
             <Tweet userid={props.userid}/>
+
+            <h6 className="mt-3"><b>{notTweet}</b></h6>
             {              
                PublicTweets.map(tw=>
                 <div className="post" >

@@ -30,12 +30,21 @@ const FeedProfile = (props) => {
    }
    PublicTweets.reverse();
 
+   var notTweet = '';
+
+   if(PublicTweets.length===0) {
+    notTweet = "You don't have any tweet yet";
+  }
+
     return ( 
         <div className="feed">
             <div className="feed__header">
                  <h5>Profile</h5> 
             </div>
+            
             <Tweet userid={props.userid}/>
+
+            <h6 className="mt-3"><b>{notTweet}</b></h6>
             {              
                PublicTweets.map(tw=>
                 <div className="post" >

@@ -8,7 +8,7 @@ import PermIdentityIcon from '@material-ui/icons/PermIdentity';
 import NotificationsNoneIcon from "@material-ui/icons/NotificationsNone";
 import MailOutlineIcon from "@material-ui/icons/MailOutline";
 import BookmarkBorderIcon from "@material-ui/icons/BookmarkBorder";
-import  {Link, useHistory, useParams } from 'react-router-dom';
+import  {Link, useHistory} from 'react-router-dom';
 import { Button } from "@material-ui/core";
 
 function Sidebar(props) {
@@ -37,13 +37,13 @@ function Sidebar(props) {
          loggedInUser.map(user=>    
           
         <div>
-            <Link ><SidebarOption Icon={HomeIcon} text="Home" /></Link>
-            <Link onClick={handleClick}><SidebarOption Icon={PermIdentityIcon} text="Profile" /></Link>
+            <Link to="#"><SidebarOption Icon={HomeIcon} text="Home" /></Link>
+            <Link to="#" onClick={handleClick}><SidebarOption Icon={PermIdentityIcon} text="Profile" /></Link>
             <Link to ="/Login"><SidebarOption Icon={ExitToAppIcon} text="Login" /></Link>
             <Link to ="/Register"><SidebarOption Icon={ExitToAppIcon} text="Register" /></Link>
-            <Link ><SidebarOption Icon={NotificationsNoneIcon} text="Notifications" /></Link>
-            <Link ><SidebarOption Icon={MailOutlineIcon} text="Messages" /></Link>
-            <Link ><SidebarOption Icon={BookmarkBorderIcon} text="Bookmarks" /></Link>
+            <Link to="#" ><SidebarOption Icon={NotificationsNoneIcon} text="Notifications" /></Link>
+            <Link to="#" ><SidebarOption Icon={MailOutlineIcon} text="Messages" /></Link>
+            <Link to="#" ><SidebarOption Icon={BookmarkBorderIcon} text="Bookmarks" /></Link>
             <Button variant="outlined" className="sidebar__tweet" fullWidth>
               Tweet
       </Button>

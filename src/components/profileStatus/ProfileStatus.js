@@ -1,5 +1,8 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
+import PublicIcon from '@material-ui/icons/Public';
+import LockIcon from '@material-ui/icons/Lock';
+import './ProfileStatus.css';
 const ProfileStatus = () => {
 
     var status = true;
@@ -41,8 +44,8 @@ const ProfileStatus = () => {
     }
 
     return (
-        <div> 
-            <button onClick={handleStatusClick} class="btn btn-sm btn-warning">{status?'Public':'Private'}</button>  
+        <div className="public_private"> 
+            <button onClick={handleStatusClick} className="btn btn-sm">{status?<PublicIcon/>:<LockIcon/>}</button>  
         </div> 
     );
 };

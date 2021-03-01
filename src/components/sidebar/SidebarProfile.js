@@ -40,13 +40,13 @@ function Sidebar(props) {
          loggedInUser.map(user=>    
           
         <div>
-            <Link onClick={handleClick}><SidebarOption Icon={HomeIcon} text="Home" /></Link>
-            <Link ><SidebarOption Icon={PermIdentityIcon} text="Profile" /></Link>
+            <Link to="#" onClick={handleClick}><SidebarOption Icon={HomeIcon} text="Home" /></Link>
+            <Link to="#"><SidebarOption Icon={PermIdentityIcon} text="Profile" /></Link>
             <Link to ="/Login"><SidebarOption Icon={ExitToAppIcon} text="Login" /></Link>
             <Link to ="/Register"><SidebarOption Icon={ExitToAppIcon} text="Register" /></Link>
-            <Link ><SidebarOption Icon={NotificationsNoneIcon} text="Notifications" /></Link>
-            <Link ><SidebarOption Icon={MailOutlineIcon} text="Messages" /></Link>
-            <Link ><SidebarOption Icon={BookmarkBorderIcon} text="Bookmarks" /></Link>
+            <Link to="#"><SidebarOption Icon={NotificationsNoneIcon} text="Notifications" /></Link>
+            <Link to="#"><SidebarOption Icon={MailOutlineIcon} text="Messages" /></Link>
+            <Link to="#"><SidebarOption Icon={BookmarkBorderIcon} text="Bookmarks" /></Link>
             <Button variant="outlined" className="sidebar__tweet" fullWidth>
               Tweet
       </Button>
@@ -56,11 +56,7 @@ function Sidebar(props) {
               Welcome back,<br/> Mr.{user.fullname}<br/>
               <small>@{user.username}</small>    
               </p>
-              <p>Profile Status :
-                  { 
-                      <ProfileStatus/> 
-                  }
-             </p>
+              <p>Profile Status :{ <ProfileStatus/>   } </p>
             </div>
           </div>
       )
