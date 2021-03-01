@@ -35,6 +35,7 @@ const Tweet = (props) => {
             )
             alert("Tweet posted successfully");
             history.push(`/Home/${props.userid}`);
+            window.location.reload(false);
     }
     return (
 
@@ -45,6 +46,8 @@ const Tweet = (props) => {
                         <input type="text"
                               name="tweet_text"
                               placeholder="What's Happening?"
+                              maxlength="132"
+                              title="Enter Maximum of 132 character"
                               ref={register}
                               required
                              />

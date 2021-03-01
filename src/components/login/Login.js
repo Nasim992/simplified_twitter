@@ -13,17 +13,16 @@ const Login = () => {
     useEffect(()=>{ 
         fetch('http://localhost:5000/Registerdata')
         .then (res=>res.json())
-        .then(data=>
+        .then(data=> 
             setRegisterData(data) 
             )
     },[])
     const onSubmit = (data)=>{
         const rData = registerData.find(regData => regData.username==data.username); 
 
-        sessionStorage.setItem("rData",rData.username);
-
         if(rData) {
                 alert("Login Successfull");
+                sessionStorage.setItem("rData",rData.username);
                 history.push(`/home/${rData._id}`);
         }
         else {

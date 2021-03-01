@@ -10,21 +10,16 @@ import { Avatar } from '@material-ui/core';
 const Feed = (props) => {
 
     const [tweets,setTweets] = useState([]);
-    const [profile,setProfile] = useState([]); 
     useEffect(()=>{
         fetch('http://localhost:5000/tweetdata') 
         .then (res=>res.json()) 
         .then(data=>
-            setTweets(data)
+          setTweets(data)
             )
     },[])
-    useEffect(()=>{ 
-        fetch('http://localhost:5000/Registerdata')
-        .then (res=>res.json())
-        .then(data=>
-            setProfile(data) 
-            ) 
-    },[])
+
+    const publicTweets = tweets.filter(ptweet=>ptweet.status===1);
+
     return ( 
         <div className="feed">
             <div className="feed__header">
@@ -32,7 +27,7 @@ const Feed = (props) => {
             </div>
             <Tweet userid={props.userid}/>
             { 
-            tweets.map(tw=>
+            publicTweets.map(tw=>
 
                 <div className="post" >
                 <div className="post__avatar">

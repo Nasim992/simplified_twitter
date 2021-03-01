@@ -25,37 +25,34 @@ function Sidebar(props) {
 
   const loggedInUser = profile.filter(fl=>fl._id==props.userid);
    
-  return (
+  return ( 
     <div className="sidebar">
-      <TwitterIcon className="sidebar__twitterIcon" />
 
-  
-       <Link to ="/"><SidebarOption Icon={HomeIcon} text="Home" /></Link>
-       <Link to ="/Profile"><SidebarOption Icon={PermIdentityIcon} text="Profile" /></Link>
-       <Link to ="/Login"><SidebarOption Icon={ExitToAppIcon} text="Login" /></Link>
-       <Link to ="/Register"><SidebarOption Icon={ExitToAppIcon} text="Register" /></Link>
-       <Link to ="/Login"><SidebarOption Icon={NotificationsNoneIcon} text="Notifications" /></Link>
-       <Link to ="/Login"><SidebarOption Icon={MailOutlineIcon} text="Messages" /></Link>
-       <Link to ="/Login"><SidebarOption Icon={BookmarkBorderIcon} text="Bookmarks" /></Link>
-       <Button variant="outlined" className="sidebar__tweet" fullWidth>
-        Tweet
-      </Button>
-
-      <div className="sidebar__loggedinUser">
+    <TwitterIcon className="sidebar__twitterIcon" />
       {
-          loggedInUser.map(user=>
-            <p>
+         loggedInUser.map(user=>    
+          
+        <div>
+            <Link to ="/"><SidebarOption Icon={HomeIcon} text="Home" /></Link>
+            <Link to ="/Profile"><SidebarOption Icon={PermIdentityIcon} text="Profile" /></Link>
+            <Link to ="/Login"><SidebarOption Icon={ExitToAppIcon} text="Login" /></Link>
+            <Link to ="/Register"><SidebarOption Icon={ExitToAppIcon} text="Register" /></Link>
+            <Link to ="/Login"><SidebarOption Icon={NotificationsNoneIcon} text="Notifications" /></Link>
+            <Link to ="/Login"><SidebarOption Icon={MailOutlineIcon} text="Messages" /></Link>
+            <Link to ="/Login"><SidebarOption Icon={BookmarkBorderIcon} text="Bookmarks" /></Link>
+            <Button variant="outlined" className="sidebar__tweet" fullWidth>
+              Tweet
+      </Button>
+      
+            <div className="sidebar__loggedinUser">
+              <p>
               Welcome back,<br/> Mr.{user.fullname}<br/>
-              <small>@{user.username}</small>
-            
-            
-            </p>
-            
-            )
-        }
-      </div>
-       
-
+              <small>@{user.username}</small>        
+              </p>
+            </div>
+          </div>
+      )
+    }
     </div>
   );
 }

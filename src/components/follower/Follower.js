@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 
 const Follower = ({rdata}) => {
-
-    const [follower,setfollower] = useState(true);
+ 
+    var follower = true;
     const rData= sessionStorage.getItem("rData");
     const [followerdata,setfollowerdata] = useState([])
 
@@ -10,15 +10,26 @@ const Follower = ({rdata}) => {
         fetch('http://localhost:5000/findfollower')
         .then (res=>res.json())
         .then(data=>
-            setfollowerdata(data) 
+                setfollowerdata(data)    
             )
     },[])
 
-    console.log(followerdata);
-     
+    const followerCheck = followerdata.filter(fl=>fl.followerusername===rdata.username && fl.usernameMain==rData);
+      console.log(followerCheck );
+      
+    if(followerCheck.length==0) {
+        follower = true;
+    }
+    else {
+        follower=false;
+    }
+    
     const handleCllick = ()=> {
 
-            const newData = {
+        console.log(followerCheck);
+        if(follower) {
+            console.log("Now Following")
+                   const newData = {
                 usernameMain:rData,
                 ...rdata
            }
@@ -31,8 +42,24 @@ const Follower = ({rdata}) => {
              })
              .then(response => response.json())
              .then(json => console.log(json))
-             setfollower(!follower)
-       
+             window.location.reload(false);
+        }
+        else {
+            const newData = {
+                usernameMain:rData,
+                ...rdata
+            }
+            fetch('http://localhost:5000/deletefollower', {
+               method: 'POST',
+               body: JSON.stringify(newData),
+               headers: {
+                 "Content-type": "application/json; charset=UTF-8"
+               }
+             })
+             .then(response => response.json())
+             .then(json => console.log(json))
+             window.location.reload(false);
+        }
     } 
     return (
         <div>

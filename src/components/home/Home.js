@@ -6,7 +6,7 @@ import LastActiveUser from '../lastActiveUser/LastActiveUser';
 import {
     useParams
   } from "react-router-dom";
-const Home = () => { 
+const Home = () => {  
     let { id } = useParams();
     return (
         <div className="container">
