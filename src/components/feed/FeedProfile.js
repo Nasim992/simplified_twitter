@@ -33,7 +33,7 @@ const FeedProfile = (props) => {
     return ( 
         <div className="feed">
             <div className="feed__header">
-                 <h5>Home</h5> 
+                 <h5>Profile</h5> 
             </div>
             <Tweet userid={props.userid}/>
             {              
