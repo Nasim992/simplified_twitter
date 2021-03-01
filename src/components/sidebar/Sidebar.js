@@ -8,12 +8,14 @@ import PermIdentityIcon from '@material-ui/icons/PermIdentity';
 import NotificationsNoneIcon from "@material-ui/icons/NotificationsNone";
 import MailOutlineIcon from "@material-ui/icons/MailOutline";
 import BookmarkBorderIcon from "@material-ui/icons/BookmarkBorder";
-import  {Link } from 'react-router-dom';
+import  {Link, useHistory, useParams } from 'react-router-dom';
 import { Button } from "@material-ui/core";
 
 function Sidebar(props) {
+   
 
   const [profile,setProfile] = useState([]); 
+  const history = useHistory();
 
   useEffect(()=>{ 
     fetch('http://localhost:5000/Registerdata')
@@ -22,24 +24,26 @@ function Sidebar(props) {
         setProfile(data) 
         ) 
 },[])
-
   const loggedInUser = profile.filter(fl=>fl._id==props.userid);
-   
+
+  const handleClick = () => {
+    history.push(`/Profile/${loggedInUser[0]._id}`);
+  }
+
   return ( 
     <div className="sidebar">
-
     <TwitterIcon className="sidebar__twitterIcon" />
       {
          loggedInUser.map(user=>    
           
         <div>
-            <Link to ="/"><SidebarOption Icon={HomeIcon} text="Home" /></Link>
-            <Link to ="/Profile"><SidebarOption Icon={PermIdentityIcon} text="Profile" /></Link>
+            <Link ><SidebarOption Icon={HomeIcon} text="Home" /></Link>
+            <Link onClick={handleClick}><SidebarOption Icon={PermIdentityIcon} text="Profile" /></Link>
             <Link to ="/Login"><SidebarOption Icon={ExitToAppIcon} text="Login" /></Link>
             <Link to ="/Register"><SidebarOption Icon={ExitToAppIcon} text="Register" /></Link>
-            <Link to ="/Login"><SidebarOption Icon={NotificationsNoneIcon} text="Notifications" /></Link>
-            <Link to ="/Login"><SidebarOption Icon={MailOutlineIcon} text="Messages" /></Link>
-            <Link to ="/Login"><SidebarOption Icon={BookmarkBorderIcon} text="Bookmarks" /></Link>
+            <Link ><SidebarOption Icon={NotificationsNoneIcon} text="Notifications" /></Link>
+            <Link ><SidebarOption Icon={MailOutlineIcon} text="Messages" /></Link>
+            <Link ><SidebarOption Icon={BookmarkBorderIcon} text="Bookmarks" /></Link>
             <Button variant="outlined" className="sidebar__tweet" fullWidth>
               Tweet
       </Button>

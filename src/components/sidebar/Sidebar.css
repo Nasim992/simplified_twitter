@@ -28,6 +28,4 @@
     margin-top : 50px;
     cursor:pointer;
   }
-  .sidebar__loggedinUser:hover {
-    color:var(--twitter-color);
-  }
+  

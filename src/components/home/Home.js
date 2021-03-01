@@ -1,4 +1,3 @@
-import React from 'react';
 import '../../App.css';
 import Feed from '../feed/Feed';
 import Sidebar from '../sidebar/Sidebar';
@@ -7,7 +6,8 @@ import {
     useParams
   } from "react-router-dom";
 const Home = () => {  
-    let { id } = useParams();
+    let { id } = useParams(); 
+
     return (
         <div className="container">
             <div className="row">

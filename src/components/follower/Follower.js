@@ -14,10 +14,9 @@ const Follower = ({rdata}) => {
             )
     },[])
 
-    const followerCheck = followerdata.filter(fl=>fl.followerusername===rdata.username && fl.usernameMain==rData);
-      console.log(followerCheck );
+    const followerCheck = followerdata.filter(fl=>fl.followerusername===rdata.username && fl.usernameMain===rData);
       
-    if(followerCheck.length==0) {
+    if(followerCheck.length===0) {
         follower = true;
     }
     else {
@@ -66,7 +65,7 @@ const Follower = ({rdata}) => {
             <div className="activeUser">
                        <div className="row">
                            <div className="col-sm-8 col-md-8 col-xl-8col-lg-8 activeUser__fullname">
-                                   <p>{rdata.fullname} <small>@{rdata.username}</small></p>
+                                   <p>{rdata.fullname} <small>@{rdata.username}</small></p> 
                            </div>
                            <div className="col-sm-2 col-md-2 col-xl-2 col-lg-2 activeUser__follower">
                             <button  onClick={handleCllick} className="btn btn-sm btn-info">{follower?'follow':'Unfollow'}</button>

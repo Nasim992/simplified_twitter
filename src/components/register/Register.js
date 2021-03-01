@@ -1,6 +1,6 @@
 import './Register.css';
 import {useForm} from 'react-hook-form';
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useEffect, useState } from 'react';
 
 const Register = () => {
@@ -67,6 +67,7 @@ const Register = () => {
                      name="login"
                      className="btn btn-sm btn-info"
                      >Register</button>
+                      <Link to="Login"><button className="btn btn-sm btn-secondary ml-2">Login</button></Link>
                  </form>
              </div>
         </div>

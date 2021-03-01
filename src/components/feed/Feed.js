@@ -10,15 +10,43 @@ import { Avatar } from '@material-ui/core';
 const Feed = (props) => {
 
     const [tweets,setTweets] = useState([]);
+    const [followerdata,setfollowerdata] = useState([]);
     useEffect(()=>{
         fetch('http://localhost:5000/tweetdata') 
         .then (res=>res.json()) 
         .then(data=>
           setTweets(data)
             )
-    },[])
+    },[]) 
 
-    const publicTweets = tweets.filter(ptweet=>ptweet.status===1);
+    useEffect(()=>{ 
+      fetch('http://localhost:5000/findfollower')
+      .then (res=>res.json())
+      .then(data=>
+              setfollowerdata(data)    
+          )
+  },[])
+
+    const loginUser = sessionStorage.getItem("rData");
+    
+    const UserFollow = followerdata.filter(fol=>fol.usernameMain===loginUser);
+
+    const followerUsername = [];
+
+    for (var i=0;i<UserFollow.length;i++) {
+      followerUsername.push(UserFollow[i].followerusername);
+    }
+
+   const PublicTweets = [] ;
+
+   for (var i =0 ;i<tweets.length;i++) {
+      for(var j=0;j<Math.max(followerUsername.length,1);j++) {
+        if(tweets[i].username === followerUsername[j] || tweets[i].username===loginUser) {
+          PublicTweets.push(tweets[i]);
+        }
+      }
+   }
+   PublicTweets.reverse();
 
     return ( 
         <div className="feed">
@@ -26,9 +54,8 @@ const Feed = (props) => {
                  <h5>Home</h5> 
             </div>
             <Tweet userid={props.userid}/>
-            { 
-            publicTweets.map(tw=>
-
+            {              
+               PublicTweets.map(tw=>
                 <div className="post" >
                 <div className="post__avatar">
                   <Avatar/>
@@ -50,7 +77,7 @@ const Feed = (props) => {
                     </div>
                   </div>
                   <img src=""alt="" />
-                  <div className="post__footer">
+                  <div className="post__footer"> 
                     <ChatBubbleOutlineIcon fontSize="small" />
                     <RepeatIcon fontSize="small" />
                     <FavoriteBorderIcon fontSize="small" />

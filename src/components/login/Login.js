@@ -2,14 +2,14 @@ import React from 'react';
 import './Login.css';
 import { useForm} from 'react-hook-form';
 import { useEffect, useState } from 'react';
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 const Login = () => {
 
     const {register,handleSubmit } = useForm();
     const [registerData,setRegisterData] = useState([]);
-    const history = useHistory();
-
+    const history = useHistory(); 
+ 
     useEffect(()=>{ 
         fetch('http://localhost:5000/Registerdata')
         .then (res=>res.json())
@@ -23,6 +23,7 @@ const Login = () => {
         if(rData) {
                 alert("Login Successfull");
                 sessionStorage.setItem("rData",rData.username);
+                sessionStorage.setItem("id",rData._id);
                 history.push(`/home/${rData._id}`);
         }
         else {
@@ -50,6 +51,8 @@ const Login = () => {
                      name="login"
                      className="btn btn-sm btn-info"
                      >Login</button>
+                     <Link to="Register"><button className="btn btn-sm btn-secondary ml-2">Register</button></Link>
+
                  </form>
              </div>
         </div>

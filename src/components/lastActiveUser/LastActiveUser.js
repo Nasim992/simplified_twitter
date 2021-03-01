@@ -2,8 +2,8 @@ import React from 'react';
 import './LastActiveUser.css';
 import { useEffect, useState } from 'react';
 import Follower from '../follower/Follower';
-const LastActiveUser = (props) => {
 
+const LastActiveUser = (props) => {
     const [registerData,setRegisterData] = useState([]);
 
     useEffect(()=>{ 
